@@ -1,0 +1,81 @@
+<div class="grid">
+    <div class="box box2">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>ADD CUSTOMER</mat-card-title>
+        </mat-card-header>
+        <form [formGroup]="form">
+          <mat-card-content>
+              <mat-form-field>
+                <mat-select placeholder="Salutation" formControlName="salutationField" [(ngModel)]="customer.salutation">
+                  <mat-option *ngFor="let s of salutations | async" [value]="s.id">{{s.name}}</mat-option>
+                  <mat-error *ngIf="form.get('salutationField').invalid">{{getErrorMessage()}}</mat-error>
+                </mat-select>
+              </mat-form-field>
+            <mat-form-field>
+              <input placeholder="Enter First Name" formControlName="firstNameField" matInput Uppercase [(ngModel)]="customer.firstName" >
+              <mat-error *ngIf="form.get('firstNameField').invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input placeholder="Enter Last Name" formControlName="lastNameField" matInput Uppercase [(ngModel)]="customer.lastName" >
+              <mat-error *ngIf="form.get('lastNameField').invalid">{{getErrorMessageLastName()}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Email" formControlName="emailField" [(ngModel)]="customer.email">
+                
+                <!-- <mat-error *ngIf="emailField.hasError('email') && !emailField.hasError('required')">
+                    Please enter a valid email address
+                  </mat-error>
+                  <mat-error *ngIf="emailField.hasError('required')">
+                    Email is <strong>required</strong>
+                  </mat-error> -->
+            </mat-form-field>
+
+            <mat-form-field>
+                <span matPrefix>+65 &nbsp;</span>
+                <input type="tel" matInput placeholder="Telephone" formControlName="telField" [(ngModel)]="customer.tel">
+            </mat-form-field>
+            <mat-form-field>
+                <span matPrefix>+65 &nbsp;</span>
+                <input type="tel" matInput placeholder="Mobile" formControlName="mobField" [(ngModel)]="customer.mob">
+            </mat-form-field>
+            <mat-form-field>
+                <span matPrefix>+65 &nbsp;</span>
+                <input type="tel" matInput placeholder="Fax" formControlName="faxField" [(ngModel)]="customer.fax">
+            </mat-form-field>
+            <mat-form-field>
+                <span matPrefix>www &nbsp;</span>
+                <input type="tel" matInput placeholder="Website" formControlName="webField" [(ngModel)]="customer.web">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-select placeholder="Gender" formControlName="genderField" [(ngModel)]="customer.gender">
+                  <mat-option *ngFor="let g of genders | async" [value]="g.id">{{g.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field>
+                  <input 
+                    matInput
+                    formControlName="dateField" 
+                    [matDatepicker]="picker" 
+                    placeholder="Date of Birth"
+                    [(ngModel)]="customer.dob"
+                  >
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+                <br>
+                <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!form.valid">ADD CUSTOMER</button>
+            <!-- <button mat-icon-button (click)="onSubmit()" [disabled]="!form.valid">
+                <mat-icon color="accent">add_circle</mat-icon>
+            </button> -->
+          </mat-card-content>
+  
+        </form>
+      </mat-card>
+    </div>
+  </div>
+  
+

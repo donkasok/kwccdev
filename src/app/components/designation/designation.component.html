@@ -1,0 +1,40 @@
+<div *ngIf="addState; else editBlock">
+  <app-add-designation></app-add-designation>
+</div>
+<ng-template #editBlock>
+
+  <div class="grid">
+    <div class="box box2">
+
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>EDIT DESIGNATION</mat-card-title>
+        </mat-card-header>
+        <form [formGroup]="editForm">
+          <mat-card-content *ngIf="designation">
+            <mat-form-field>
+              <input placeholder="Enter Designation" formControlName="designationField" [(ngModel)]="designation.name" matInput Uppercase
+                (focusout)="checkDesignation($event)">
+
+              <mat-error *ngIf="editForm.get('designationField').invalid">{{getErrorMessage()}}</mat-error>
+              <mat-hint align="end" class="hinterror" *ngIf="editdesignationCheker == true ">Duplicate Value</mat-hint>
+            </mat-form-field>
+            <br>
+            <button mat-raised-button color="accent" (click)="updateDesignation(designation)" [disabled]="!editForm.valid || editdesignationCheker == true">UPDATE DESIGNATION</button>
+
+            <!-- <button mat-icon-button (click)="updateDesignation(designation)" [disabled]="!editForm.valid || editdesignationCheker == true">
+              <mat-icon color="accent">mode_edit</mat-icon>
+            </button> -->
+          </mat-card-content>
+
+        </form>
+
+      </mat-card>
+    </div>
+
+  </div>
+
+</ng-template>
+<div>
+  <app-list-designation (designationClick)="showDesignationFromParent($event)"></app-list-designation>
+</div>

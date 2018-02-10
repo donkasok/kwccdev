@@ -1,0 +1,9 @@
+.mat-column-Status,
+.mat-column-Edit,
+.mat-column-Delete,
+.mat-column-View{
+  flex: 0 0 5%;
+}
+.mat-column-Name{
+    flex: 0 0 80%;  
+}

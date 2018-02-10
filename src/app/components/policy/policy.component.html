@@ -1,0 +1,120 @@
+<div *ngIf="addState; else editBlock">
+    <app-add-policy [customerId]="customerId"></app-add-policy>
+  </div>
+  <ng-template #editBlock>
+      <div class="grid">
+          <div class="box box2">
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title>EDIT POLICY</mat-card-title>
+              </mat-card-header>
+              <form [formGroup]="editForm" class="example-form">
+                <mat-card-content *ngIf="policy">
+
+                    <mat-form-field class="example-full-width">
+                        <mat-select placeholder="Status" formControlName="policyStatusId" [(ngModel)]="policy.policyStatusId">
+                          <mat-option *ngFor="let p of policyStatus | async" [value]="p.name">{{p.name}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+
+                      
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Policy No" formControlName="policyNo" [(ngModel)]="policy.policyNo">
+                            <mat-error *ngIf="editForm.get('policyNo').invalid">{{getErrorMessage()}}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Insurance Plan" formControlName="insurancePlan" [(ngModel)]="policy.insurancePlan">
+                       </mat-form-field>
+                       <hr>
+                       <mat-form-field class="example-full-width">
+                          <mat-select placeholder="Policy Type" formControlName="insurerTypeId" [(ngModel)]="policy.insurerTypeId">
+                            <mat-option *ngFor="let t of insurerTypes | async" [value]="t.name">{{t.name}}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                          <mat-select placeholder="Insurance Company" formControlName="insurerId" [(ngModel)]="policy.insurerId">
+                            <mat-option *ngFor="let i of insurer | async" [value]="i.name">{{i.name}}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        
+                        <hr>
+                        <h4>Date</h4>
+
+                       <mat-form-field>
+                        <input matInput formControlName="policyStartDate" [matDatepicker]="picker" placeholder="Start Date" [(ngModel)]="policy.policyStartDate"
+                          class="example-full-width">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+            
+                      <mat-form-field>
+                        <input matInput formControlName="policyEndDate" [matDatepicker]="picker2" placeholder="End Date" [(ngModel)]="policy.policyEndDate"
+                          class="example-full-width">
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                      </mat-form-field>
+            
+                      <hr>
+                      <h4>Policy Details</h4>
+
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="HS" formControlName="hs" [(ngModel)]="policy.hs">
+                     </mat-form-field>
+            
+                     <mat-form-field class="example-full-width">
+                      <input matInput placeholder="PA" formControlName="pa" [(ngModel)]="policy.pa">
+                   </mat-form-field>
+            
+                   <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Disability Income" formControlName="disabilityIncome" [(ngModel)]="policy.disabilityIncome">
+                  </mat-form-field>
+                  <hr>
+            
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Death" formControlName="death" [(ngModel)]="policy.death">
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Hospital income" formControlName="hospitalIncome" [(ngModel)]="policy.hospitalIncome">
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Critical Illiness" formControlName="criticalIlliness" [(ngModel)]="policy.criticalIlliness">
+                  </mat-form-field>
+            
+                  <hr>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Eldershield" formControlName="elderShield" [(ngModel)]="policy.elderShield">
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Savings" formControlName="savings" [(ngModel)]="policy.savings">
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Motor" formControlName="motor" [(ngModel)]="policy.motor">
+                  </mat-form-field>
+            
+                  <hr>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Investments" formControlName="investments" [(ngModel)]="policy.investments">
+                  </mat-form-field>
+                  <hr>
+                  <h4>Premium Details</h4>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Premium Amount" formControlName="premiumAmount" [(ngModel)]="policy.premiumAmount">
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Coverage Details" formControlName="coverageDetail" [(ngModel)]="policy.coverageDetail">
+                  </mat-form-field>
+
+                  <br>
+                  <button mat-raised-button color="accent" (click)="update(policy)" [disabled]="!editForm.valid || checker == true" >UPDATE POLICY</button>
+                  <!-- <button mat-icon-button (click)="update(policy)" [disabled]="!editForm.valid || checker == true">
+                    <mat-icon color="accent">mode_edit</mat-icon>
+                  </button> -->
+                </mat-card-content>
+              </form>
+            </mat-card>
+          </div>
+        </div>
+
+  </ng-template>
+<app-list-policy (policyClick)="showFromParent($event)" [customerId]="customerId"></app-list-policy>

@@ -1,0 +1,93 @@
+
+<div *ngIf="addState; else editBlock">
+    <app-add-cutomer></app-add-cutomer>
+  </div>
+  <ng-template #editBlock>
+
+      <div class="grid">
+          <div class="box box2">
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title>EDIT CUSTOMER</mat-card-title>
+              </mat-card-header>
+              <form [formGroup]="editForm">
+                <mat-card-content *ngIf="customer">
+                  <mat-form-field>
+                    <mat-select placeholder="Select" formControlName="salutationField" [(ngModel)]="customer.salutation">
+                      <mat-option *ngFor="let s of salutations | async" [value]="s.id">{{s.name}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input placeholder="Enter First name" formControlName="firstNameField" [(ngModel)]="customer.firstName" matInput>
+                    <mat-error *ngIf="editForm.get('firstNameField').invalid">{{getErrorMessage()}}</mat-error>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input placeholder="Enter Last Name" formControlName="lastNameField" matInput Uppercase [(ngModel)]="customer.lastName">
+                    <mat-error *ngIf="editForm.get('lastNameField').invalid">{{getErrorMessageLastName()}}</mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Email" formControlName="emailField" [(ngModel)]="customer.email">
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <span matPrefix>+65 &nbsp;</span>
+                    <input type="tel" matInput placeholder="Telephone" formControlName="telField" [(ngModel)]="customer.tel">
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <span matPrefix>+65 &nbsp;</span>
+                    <input type="tel" matInput placeholder="Mobile" formControlName="mobField" [(ngModel)]="customer.mob">
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <span matPrefix>+65 &nbsp;</span>
+                    <input type="tel" matInput placeholder="Fax" formControlName="faxField" [(ngModel)]="customer.fax">
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <span matPrefix>www &nbsp;</span>
+                    <input type="tel" matInput placeholder="Website" formControlName="webField" [(ngModel)]="customer.web">
+                  </mat-form-field>
+                  <mat-form-field>
+                      <mat-select placeholder="Select" formControlName="genderField" [(ngModel)]="customer.gender">
+                        <mat-option *ngFor="let g of genders | async" [value]="g.id">{{g.name}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input 
+                          matInput
+                          formControlName="dateField" 
+                          [matDatepicker]="picker" 
+                          placeholder="Date of Birth"
+                          [(ngModel)]="customer.date"
+                        >
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+
+                      <br>
+                  <button mat-raised-button color="accent" (click)="updateCustomer(customer)" [disabled]="!editForm.valid" >UPDATE CUSTOMER</button>
+                  <!-- <button mat-icon-button (click)="updateCustomer(customer)" [disabled]="!editForm.valid">
+                    <mat-icon color="accent">mode_edit</mat-icon>
+                  </button> -->
+                </mat-card-content>
+              </form>
+            </mat-card>
+          </div>
+        </div>
+
+        <!-- <div>
+          <span *ngIf="customer">
+            <p>{{customer.id}}</p>
+            <p>{{customer.firstName}}</p>
+          </span>
+        </div> -->
+
+
+  </ng-template>
+
+
+
+
+
+
+
+
+<app-list-cutomer (viewCustomerClick)="showCustomerFromParent($event)"></app-list-cutomer>

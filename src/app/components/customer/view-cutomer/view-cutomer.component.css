@@ -1,0 +1,29 @@
+mat-grid-tile {
+    background: lightblue;
+    padding: 0px;
+    margin: 0px;
+  }
+
+.fillWid{
+    background: rgb(255, 255, 255);
+    width: 100%;
+    height: 100%;
+}
+
+div[fxFlex] { padding:20px; }
+
+.row {
+    display: flex;
+ }
+ .row_cell {
+    flex: 1
+ }
+
+ .mat-tab-group {
+    width: 100%;
+    margin: auto;
+}
+
+.mat-tab-list {
+    background: #dedede;
+}

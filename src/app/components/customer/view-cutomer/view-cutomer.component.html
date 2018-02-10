@@ -1,0 +1,66 @@
+
+ <!-- <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxFlex class="coloredContainerX box">
+   <div fxFlex>
+      <app-to-do [customerId]="customerId"></app-to-do>
+   </div>
+
+   <div fxFlex>
+      <app-address [customerId]="customerId"></app-address>
+    </div>
+
+    
+ </div> -->
+
+
+ <!-- <div class="row">
+    <div class="row_cell">
+        <app-to-do [customerId]="customerId"></app-to-do>
+    </div>
+    <div class="row_cell">
+        <app-address [customerId]="customerId"></app-address>
+    </div>
+  </div>
+
+ <div class="row">
+    <div class="row_cell">
+            <app-add-policy [customerId]="customerId"></app-add-policy>
+    </div>
+  </div> -->
+  <div fxLayoutWrap fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" LayoutAlign="start stretch"> 
+
+    <mat-tab-group>
+        <mat-tab label="Communication">
+            <app-to-do [customerId]="customerId"></app-to-do>
+        </mat-tab>
+        <mat-tab label="Address">
+            <app-address [customerId]="customerId"></app-address>
+        </mat-tab>
+        <mat-tab label="Policy">
+            <app-policy [customerId]="customerId"></app-policy>
+        </mat-tab>
+        <mat-tab label="Files" disabled>
+                
+        </mat-tab>
+    </mat-tab-group>
+    
+    </div>
+
+  <!-- <div fxLayoutWrap fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" LayoutAlign="start stretch"> 
+      <div fxFlexOrder="1" fxFlex="1 2 calc(15em + 20px)"></div>
+      <div fxFlexOrder="2" fxFlex="1 2 calc(15em + 20px)"></div>
+
+  </div>
+
+  <div fxLayoutWrap fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" LayoutAlign="start stretch"> 
+      <div fxFlexOrder="1" fxFlex="1 2 calc(15em + 20px)">></div>
+     <div fxFlexOrder="2" fxFlex="1 2 calc(15em + 20px)"><app-address [customerId]="customerId"></app-address></div>
+  </div> -->
+
+ 
+
+
+
+
+
+
+

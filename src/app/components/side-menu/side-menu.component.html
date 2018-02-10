@@ -1,0 +1,52 @@
+
+<h1 class="example-app-name">Arrow</h1>
+        <mat-accordion>
+            
+          <mat-expansion-panel (opened)="panelOpenState = true"
+            (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+        <mat-panel-title>
+          CRM
+        <!-- <span><i class="material-icons menu-setting-icon">settings</i> CRM </span> -->
+        </mat-panel-title>
+        <mat-panel-description></mat-panel-description>
+        </mat-expansion-panel-header>
+        <a mat-list-item routerLink="/customer" > Customer  </a>
+        <!-- <a mat-list-item routerLink="/upload" > Files  </a> -->
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              APP
+              <!-- <span><i class="material-icons menu-setting-icon">settings</i>APP</span> -->
+            </mat-panel-title>
+            <mat-panel-description></mat-panel-description>
+          </mat-expansion-panel-header>
+          
+          <!-- <a mat-list-item routerLink="/dashboard" > Dashboard  </a> -->
+          <a mat-list-item routerLink="/follow-up" > Follow Up  </a>
+          <a mat-list-item routerLink="/segment" > Segments  </a>
+          <a mat-list-item routerLink="/insurance-type" > Insurance Type  </a>
+          <a mat-list-item routerLink="/insurer" > Insurer  </a>
+          <a mat-list-item routerLink="/status" > Status  </a>
+          <!-- <a mat-list-item routerLink="/policy" > Policy  </a> -->
+          <!-- <a mat-list-item routerLink="/to-do" > TO Do  </a> -->
+          
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              SYSTEM
+               <!-- <span><i class="material-icons menu-setting-icon">settings</i> SYSTEM</span> -->
+            </mat-panel-title>
+            <mat-panel-description></mat-panel-description>
+          </mat-expansion-panel-header>
+          <a mat-list-item routerLink="/gender" > Gender  </a>
+          <a mat-list-item routerLink="/salutation" > Salutation  </a>
+          <a mat-list-item routerLink="/designation" > Designation  </a>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+  

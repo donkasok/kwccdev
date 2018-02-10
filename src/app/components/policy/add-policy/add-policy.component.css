@@ -1,0 +1,14 @@
+.example-full-width{
+    min-width: 300px;
+    width:30%;
+    padding: 3px;
+}
+
+hr {
+    color: #fff !important;
+    font-size: 0px;
+    border: 0px;
+}
+button{
+    margin-top: 40px;
+}

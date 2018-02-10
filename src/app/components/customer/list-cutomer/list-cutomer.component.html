@@ -1,0 +1,72 @@
+<div class="grid">
+    <div class="box box2">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>MANAGE CUSTOMERS</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+
+                <mat-form-field>
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                </mat-form-field>
+                <mat-table #table [dataSource]="dataSource" [trackBy]="trackByUid" matSort class="animate">
+
+                    <ng-container matColumnDef="FirstName">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
+                        <mat-cell *matCellDef="let customer"> {{customer.firstName}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="LastName">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </mat-header-cell>
+                        <mat-cell *matCellDef="let customer"> {{customer.lastName}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Email">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+                        <mat-cell *matCellDef="let customer"> {{customer.email}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Tel">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Tel </mat-header-cell>
+                        <mat-cell *matCellDef="let customer"> {{customer.tel}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Mob">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Mobile </mat-header-cell>
+                        <mat-cell *matCellDef="let customer"> {{customer.mob}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="View">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+                            <mat-cell *matCellDef="let customer">
+                                <button mat-icon-button [routerLink] = "['/customer-details', customer.id]">
+                                    <mat-icon color="accent">remove_red_eye</mat-icon>
+                                </button>
+                            </mat-cell>
+                        </ng-container>
+
+
+                    <ng-container matColumnDef="Edit">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+                        <mat-cell *matCellDef="let customer">
+                            <button mat-icon-button (click)="viewCustomer($event, customer)">
+                                <mat-icon color="accent">mode_edit</mat-icon>
+                            </button>
+                        </mat-cell>
+                    </ng-container>
+
+                   
+                    <ng-container matColumnDef="Delete">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+                        <mat-cell *matCellDef="let customer">
+                            <button mat-icon-button (click)="deleteCustomer($event, customer)">
+                                <mat-icon color="accent">delete</mat-icon>
+                            </button>
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
+                </mat-table>
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

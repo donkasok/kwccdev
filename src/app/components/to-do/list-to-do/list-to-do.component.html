@@ -1,0 +1,80 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>MANAGE COMMUNICATION</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+    <mat-table #table [dataSource]="dataSource" [trackBy]="trackByUid" matSort class="animate">
+
+      <ng-container matColumnDef="Status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+        <mat-cell *matCellDef="let task">
+          <mat-slide-toggle class="example-margin" color="primary" [checked]="task.status" [disabled]="disabled" (click)="updateStatus($event, task)">
+          </mat-slide-toggle>
+        </mat-cell>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="Name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
+        <mat-cell *matCellDef="let task">{{task.followUpId}} </mat-cell>
+      </ng-container> -->
+      <ng-container matColumnDef="Name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
+        <mat-cell *matCellDef="let task">{{task.followUpId}} </mat-cell>
+        <!-- <mat-cell *matCellDef="let task">{{(getDisplayValue(task.followUpId) | async)?.name}}</mat-cell> -->
+        <!-- <mat-cell *matCellDef="let task">{{(getDisplayValue(task.followUpId))?}}</mat-cell> -->
+      </ng-container>
+      <ng-container matColumnDef="Date">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Due Date </mat-header-cell>
+        <mat-cell *matCellDef="let task"> {{task.date | date}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Alert">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Alert </mat-header-cell>
+        <mat-cell *matCellDef="let task">
+          <span *ngIf=" today > task.date ">
+            <mat-chip-list>
+              <mat-chip color="accent" selected="true">Overdue </mat-chip>
+            </mat-chip-list>
+          </span>
+          <span *ngIf=" task.date > today ">
+            <mat-chip-list>
+              <mat-chip color="primary" selected="true">Pending </mat-chip>
+            </mat-chip-list>
+
+          </span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Edit">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+        <mat-cell *matCellDef="let task">
+
+          <button mat-icon-button (click)="edit($event, task)">
+            <mat-icon color="accent">mode_edit</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Delete">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+        <mat-cell *matCellDef="let task">
+
+          <button mat-icon-button (click)="delete($event, task)">
+            <mat-icon color="accent">delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+  </mat-card-content>
+</mat-card>
+<!-- <button mat-icon-button (click)="getFollowUpType('tFAXaPVpOh1aRKlbsvv4')">
+  <mat-icon color="accent">delete</mat-icon>
+</button> -->

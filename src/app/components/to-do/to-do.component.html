@@ -1,0 +1,40 @@
+<div *ngIf="addState; else editBlock">
+  <app-add-to-do [customerId]="customerId"></app-add-to-do>
+</div>
+<ng-template #editBlock>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>EDIT COMMUNICATION</mat-card-title>
+      </mat-card-header>
+      <form [formGroup]="editForm" class="example-form">
+        <mat-card-content *ngIf="task">
+          <mat-form-field class="example-full-width">
+            <mat-select placeholder="Follow Up" formControlName="followUpField" [(ngModel)]="task.followUpId">
+              <mat-option *ngFor="let f of followUpTypes | async" [value]="f.name">{{f.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <textarea placeholder="Enter Task" formControlName="taskField" [(ngModel)]="task.name" matInput></textarea>
+            <mat-error *ngIf="editForm.get('taskField').invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput formControlName="dateField" [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="task.date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <br>
+          <button mat-raised-button color="accent" (click)="update(task)" [disabled]="!editForm.valid">UPDATE COMMUNICATION</button>
+
+          <!-- <button mat-icon-button (click)="update(task)" [disabled]="!editForm.valid">
+            <mat-icon color="accent">add_circle</mat-icon>
+          </button> -->
+        </mat-card-content>
+
+      </form>
+    </mat-card>
+</ng-template>
+<div>
+  <app-list-to-do (toDoClick)="showFromParent($event)" [customerId]="customerId"></app-list-to-do>
+</div>

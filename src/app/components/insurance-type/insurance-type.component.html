@@ -1,0 +1,46 @@
+
+
+
+
+
+<div *ngIf="addState; else editBlock">
+        <app-add-insurance-type></app-add-insurance-type>
+      </div>
+      <ng-template #editBlock>
+      
+        <div class="grid">
+          <div class="box box2">
+      
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title>EDIT INSURANCE TYPE</mat-card-title>
+              </mat-card-header>
+              <form [formGroup]="editForm">
+                <mat-card-content *ngIf="insuranceType">
+                  <mat-form-field>
+                    <input placeholder="Enter Insurance Type" formControlName="insuranceTypeField" [(ngModel)]="insuranceType.name" matInput Uppercase
+                      (focusout)="check($event)">
+      
+                    <mat-error *ngIf="editForm.get('insuranceTypeField').invalid">{{getErrorMessage()}}</mat-error>
+                    <mat-hint align="end" class="hinterror" *ngIf="checker == true ">Duplicate Value</mat-hint>
+                  </mat-form-field>
+                  <br>
+              <button mat-raised-button color="accent" (click)="update(insuranceType)" [disabled]="!editForm.valid || checker == true">UPDATE INSURANCE TYPE</button>
+
+                  <!-- <button mat-icon-button (click)="update(insuranceType)" [disabled]="!editForm.valid || checker == true">
+                    <mat-icon color="accent">mode_edit</mat-icon>
+                  </button> -->
+                </mat-card-content>
+      
+              </form>
+      
+            </mat-card>
+          </div>
+      
+        </div>
+      
+      </ng-template>
+      <div>
+        <app-list-insurance-type (insuranceTypeClick)="showFromParent($event)"></app-list-insurance-type>
+      </div>
+      

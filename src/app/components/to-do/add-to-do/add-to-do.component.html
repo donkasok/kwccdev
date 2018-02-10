@@ -1,0 +1,33 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>CREATE COMMUNICATION</mat-card-title>
+  </mat-card-header>
+  <form [formGroup]="form" class="example-form">
+    <mat-card-content>
+      <mat-form-field class="example-full-width">
+        <mat-select placeholder="Follow Up" formControlName="followUpField" [(ngModel)]="task.followUpId">
+          <mat-option *ngFor="let f of followUpTypes | async" [value]="f.name">{{f.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <textarea placeholder="Enter Task" formControlName="taskField" [(ngModel)]="task.name" matInput></textarea>
+        <mat-error *ngIf="form.get('taskField').invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="dateField" [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="task.date"
+          class="example-full-width">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <br>
+      <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!form.valid">ADD COMMUNICATION</button>
+
+      <!-- <button mat-icon-button (click)="onSubmit()" [disabled]="!form.valid">
+        <mat-icon color="accent">add_circle</mat-icon>
+      </button> -->
+    </mat-card-content>
+
+  </form>
+</mat-card>

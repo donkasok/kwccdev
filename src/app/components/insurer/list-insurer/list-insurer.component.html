@@ -1,0 +1,47 @@
+<div class="grid">
+  <div class="box box2">
+      <mat-card>
+          <mat-card-header>
+              <mat-card-title>MANAGE INSURER</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+
+              <mat-form-field>
+                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+              </mat-form-field>
+              <mat-table #table [dataSource]="dataSource" [trackBy]="trackByUid" matSort class="animate">
+
+                  <ng-container matColumnDef="Name">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                      <mat-cell *matCellDef="let insurer"> {{insurer.name}} </mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Edit">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+                      <mat-cell *matCellDef="let insurer">
+                          
+                          <button mat-icon-button (click)="edit($event, insurer)">
+                              <mat-icon color="accent">mode_edit</mat-icon>
+                          </button>
+                      </mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Delete">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+                      <mat-cell *matCellDef="let insurer">
+                          
+                          <button mat-icon-button (click)="delete($event, insurer)">
+                              <mat-icon color="accent">delete</mat-icon>
+                          </button>
+                      </mat-cell>
+                  </ng-container>
+
+                  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                  <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
+              </mat-table>
+              <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+          </mat-card-content>
+      </mat-card>
+  </div>
+</div>

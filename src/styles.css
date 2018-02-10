@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+*{
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+.hinterror {
+    color: #ce5454;
+}
+
+.eigthyPercent{
+    width:80%;
+}
+.sixtyPercent{
+    width:60%;
+}
+.mat-expansion-indicator::after, .mat-expansion-panel-header-description{
+    color: rgb(255, 255, 255) !important;
+}
+.mat-toolbar.mat-primary {
+    background: #262f45
+}

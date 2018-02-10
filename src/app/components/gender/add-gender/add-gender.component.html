@@ -1,0 +1,30 @@
+<div class="grid">
+  <div class="box box2">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>ADD GENDER</mat-card-title>
+      </mat-card-header>
+      <form [formGroup]="form">
+        <mat-card-content>
+          <mat-form-field class="eigthyPercent">
+            <input 
+              placeholder="Enter Gender" 
+              formControlName="genderField" 
+              [(ngModel)]="gender.name" 
+              matInput
+              Uppercase 
+              (focusout)="checkEvent($event)">
+            <mat-error *ngIf="form.get('genderField').invalid">{{getErrorMessage()}}</mat-error>
+            <mat-hint align="end" class="hinterror" *ngIf="cheker == true">Value Exist</mat-hint>
+          </mat-form-field>
+          <br>
+          <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!form.valid || cheker == true">ADD GENDER</button>
+          <!-- <button mat-icon-button (click)="onSubmit()" [disabled]="!form.valid || cheker == true">
+            <mat-icon color="accent">add_circle</mat-icon>
+          </button> -->
+        </mat-card-content>
+
+      </form>
+    </mat-card>
+  </div>
+</div>

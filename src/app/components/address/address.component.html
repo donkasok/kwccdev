@@ -1,0 +1,64 @@
+
+
+<div *ngIf="addState; else editBlock">
+        <app-add-address [customerId]="customerId"></app-add-address>
+      </div>
+      <ng-template #editBlock>
+      
+        <div class="grid">
+          <div class="box box2">
+      
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title>EDIT ADDRESS</mat-card-title>
+              </mat-card-header>
+              <form [formGroup]="editForm" class="example-form">
+                <mat-card-content *ngIf="address">
+
+                  
+                    <p>
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Address Line 1" formControlName="lineOneField" [(ngModel)]="address.lineOne">
+                            <mat-error *ngIf="editForm.get('lineOneField').invalid">{{getErrorMessage()}}</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Address Line 2" formControlName="lineTwoField" [(ngModel)]="address.lineTwo">
+                        </mat-form-field>
+                      </p>
+              
+                      <table class="example-full-width" cellspacing="0"><tr>
+                          <td><mat-form-field class="example-full-width">
+                            <input matInput placeholder="City" formControlName="city" [(ngModel)]="address.city">
+                          </mat-form-field></td>
+                          <td><mat-form-field class="example-full-width">
+                            <input matInput placeholder="State" formControlName="state" [(ngModel)]="address.state">
+                          </mat-form-field></td>
+                          <td><mat-form-field class="example-full-width" >
+                            <input matInput #postalCode maxlength="7" placeholder="Postal Code" formControlName="postal" [(ngModel)]="address.postal">
+                            <mat-hint align="end">{{postalCode.value.length}} / 7</mat-hint>
+                          </mat-form-field></td>
+                        </tr></table>
+
+
+
+
+                        <br>
+                        <button mat-raised-button color="accent" (click)="update(address)" [disabled]="!editForm.valid || checker == true">UPDATE ADDRESS</button>
+
+                  <!-- <button mat-icon-button (click)="update(address)" [disabled]="!editForm.valid || checker == true">
+                    <mat-icon color="accent">mode_edit</mat-icon>
+                  </button> -->
+                </mat-card-content>
+      
+              </form>
+      
+            </mat-card>
+          </div>
+      
+        </div>
+      
+      </ng-template>
+      <div>
+        <app-list-address (addressClick)="showFromParent($event)" [customerId]="customerId"></app-list-address>
+      </div>
+      

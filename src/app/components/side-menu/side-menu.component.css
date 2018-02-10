@@ -1,0 +1,30 @@
+h1 {
+    font-size: 24px;
+    padding: 16px 30px 16px;
+    background: #E91E63;
+    color: #fff;
+    font-weight: 500;
+    text-align: left;
+    margin: 0px;
+}
+
+.mat-expansion-panel{
+    background: #607d8b1c;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0), 0 2px 2px 0 rgba(0, 0, 0, 0), 0 1px 5px 0 rgba(0, 0, 0, 0);
+    border-bottom: 1px solid #e3e3e32e;
+}
+  .mat-expansion-panel-header-title{
+      color: #fff;
+  }
+ 
+  .mat-list-item {
+    color: #fff;
+    text-decoration: none;
+    padding: 14px;
+    text-transform: uppercase;
+}
+
+.menu-setting-icon{
+    font-size: 18px;
+    margin-left: 6px;
+}

@@ -1,0 +1,19 @@
+.tagGreen{
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px;
+}
+.tagRed{
+    background-color: #F44336;
+    color: #fff;
+    padding: 10px;
+}
+
+/* .mat-column-Status,
+.mat-column-Edit,
+.mat-column-Delete{
+  flex: 0 0 10%;
+}
+.mat-column-Name{
+    flex: 0 0 60%;  
+} */
